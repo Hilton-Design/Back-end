@@ -1,15 +1,21 @@
 package com.hilton.hibye.domain.user.domain;
 
+import com.hilton.hibye.domain.commuting.domain.Commute;
 import com.hilton.hibye.domain.user.domain.type.Role;
 import com.hilton.hibye.global.domain.BaseTimeEntity;
+import lombok.AccessLevel;
 import lombok.Builder;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table
-@NoArgsConstructor
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@Table(name = "user_table")
+@Getter
 public class User extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,14 +38,18 @@ public class User extends BaseTimeEntity {
     @Enumerated(EnumType.STRING)
     private Role role;
 
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Commute> commutingList = new ArrayList<>();
+
     @Builder
-    public User (String name, String email, String password, int age, String phone, String address) {
+    public User (String name, String email, String password, int age, String phone, String address, Role role) {
         this.name = name;
         this.email = email;
         this.password = password;
         this.age = age;
         this.phone = phone;
         this.address = address;
+        this.role = role;
     }
 
     public void late() {
