@@ -1,6 +1,7 @@
 package com.hilton.hibye.domain.user.presentation.dto.request;
 
 import com.hilton.hibye.domain.user.domain.User;
+import com.hilton.hibye.domain.user.domain.type.Role;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -23,6 +24,7 @@ public class CreateUserRequestDto {
                 .name(name)
                 .phone(phone)
                 .address(address)
+                .role(Role.USER)
                 .build();
     }
 
