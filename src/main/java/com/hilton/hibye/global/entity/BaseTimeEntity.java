@@ -1,4 +1,4 @@
-package com.hilton.hibye.global.domain;
+package com.hilton.hibye.global.entity;
 
 import lombok.Getter;
 import org.springframework.data.annotation.CreatedDate;
