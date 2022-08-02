@@ -37,6 +37,8 @@ public class User extends BaseTimeEntity {
 
     private int commuteCount;
 
+    private int hourlyWage;
+
     @Enumerated(EnumType.STRING)
     private Role role;
 
@@ -44,7 +46,7 @@ public class User extends BaseTimeEntity {
     private List<Commute> commutingList = new ArrayList<>();
 
     @Builder
-    public User (String name, String email, String password, int age, String phone, String address, Role role, int commuteCount) {
+    public User (String name, String email, String password, int age, String phone, String address, Role role, int commuteCount, int hourlyWage) {
         this.name = name;
         this.email = email;
         this.password = password;
@@ -53,9 +55,12 @@ public class User extends BaseTimeEntity {
         this.address = address;
         this.role = role;
         this.commuteCount = commuteCount;
+        this.hourlyWage = hourlyWage;
     }
 
     public void late() {
-        this.lateCount += 1;
+        this.lateCount++;
     }
+
+    public void commute() { this.commuteCount++; }
 }

@@ -11,4 +11,6 @@ public interface CommuteRepository extends JpaRepository<Commute, Long> {
     Optional<Commute> findByNameAndGoToWorkTimeBetween(String name, LocalDateTime today, LocalDateTime tomorrow);
 
     boolean existsByNameAndGoToWorkTimeBetween(String name, LocalDateTime today, LocalDateTime tomorrow);
+
+    boolean existsByNameAndGetOffWorkTimeBetween(String name, LocalDateTime today, LocalDateTime tomorrow);
 }

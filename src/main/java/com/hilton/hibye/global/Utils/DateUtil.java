@@ -17,4 +17,15 @@ public class DateUtil {
     public static LocalDateTime getTomorrow() {
         return DateUtil.getToday().plusDays(1L);
     }
+
+    public static LocalDateTime getCommuteTime() {
+        LocalDateTime now = LocalDateTime.now();
+        return LocalDateTime.of(
+                now.getYear(),
+                now.getMonth(),
+                now.getDayOfMonth(),
+                now.getHour(),
+                now.getMinute()
+        );
+    }
 }

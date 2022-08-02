@@ -3,6 +3,7 @@ package com.hilton.hibye.domain.commute.service;
 import com.hilton.hibye.domain.commute.domain.Commute;
 import com.hilton.hibye.domain.commute.domain.repository.CommuteRepository;
 import com.hilton.hibye.domain.commute.facade.CommuteFacade;
+import com.hilton.hibye.domain.user.domain.User;
 import com.hilton.hibye.domain.user.facade.UserFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,10 @@ public class CommuteService {
 
     @Transactional
     public void goToWork(String name) {
-        commuteFacade.validateGoToWork(name);
+        User user = userFacade.findUserByName(name);
+
+        commuteFacade.validateGoToWork(user.getName());
+        user.commute();
 
         // TODO :: findByName -> getCurrentUser
         Commute commute = Commute.createCommute(userFacade.findUserByName(name));

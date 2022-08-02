@@ -1,6 +1,7 @@
 package com.hilton.hibye.domain.commute.domain;
 
 import com.hilton.hibye.domain.user.domain.User;
+import com.hilton.hibye.global.Utils.DateUtil;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -54,7 +55,7 @@ public class Commute {
                 .name(user.getName())
                 .user(user)
                 .lateCount(user.getLateCount())
-                .goToWorkTime(LocalDateTime.now().withSecond(0).withNano(0))
+                .goToWorkTime(DateUtil.getCommuteTime())
                 .getOffWorkTime(null)
                 .build();
     }
@@ -64,6 +65,6 @@ public class Commute {
     }
 
     public void setGetOffWorkTime() {
-        this.getOffWorkTime = LocalDateTime.now().withSecond(0).withNano(0);
+        this.getOffWorkTime = DateUtil.getCommuteTime();
     }
 }
