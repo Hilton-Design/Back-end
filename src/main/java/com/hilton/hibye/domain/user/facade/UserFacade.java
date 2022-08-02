@@ -1,7 +1,9 @@
 package com.hilton.hibye.domain.user.facade;
 
+import com.hilton.hibye.domain.user.domain.User;
 import com.hilton.hibye.domain.user.domain.repository.UserRepository;
 import com.hilton.hibye.domain.user.exception.UserAlreadyExistsException;
+import com.hilton.hibye.domain.user.exception.UserNotFoundException;
 import com.hilton.hibye.domain.user.presentation.dto.request.CreateUserRequestDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
@@ -11,6 +13,11 @@ import org.springframework.stereotype.Component;
 public class UserFacade {
 
     private final UserRepository userRepository;
+
+    public User findUserByName(String name) {
+        return userRepository.findByName(name)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
 
     public void validateSignUp(CreateUserRequestDto request) {
         if (

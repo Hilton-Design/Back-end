@@ -1,4 +1,4 @@
-package com.hilton.hibye.domain.commuting.domain;
+package com.hilton.hibye.domain.commute.domain;
 
 import com.hilton.hibye.domain.user.domain.User;
 import lombok.AccessLevel;
@@ -61,5 +61,9 @@ public class Commute {
 
     public void setRelation() {
         this.user.getCommutingList().add(this);
+    }
+
+    public void setGetOffWorkTime() {
+        this.getOffWorkTime = LocalDateTime.now().withSecond(0).withNano(0);
     }
 }
