@@ -28,4 +28,9 @@ public class UserFacade {
             throw UserAlreadyExistsException.EXCEPTION;
         }
     }
+
+    public User getCurrentUser() {
+        return userRepository.findById(3L)
+                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
 }

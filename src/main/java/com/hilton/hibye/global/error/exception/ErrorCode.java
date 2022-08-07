@@ -15,7 +15,9 @@ public enum ErrorCode {
     NOBODY_COMMUTE_EXCEPTION(402, "아직 아무도 출석하지 않았습니다." ),
     ALREADY_GO_TO_WORK(422, "이미 출석하셨습니다." ),
     ALREADY_GET_OFF_WORK(422, "이미 퇴근 하셨습니다."),
-    GO_TO_WORK_YET(402, "아직 출근하지 않으셨습니다.");
+    GO_TO_WORK_YET(402, "아직 출근하지 않으셨습니다."),
+    COMMUTE_NOT_FOUND(402, "출퇴근 내역을 찾을 수 없습니다.")
+    ;
 
     private final int status;
     private final String message;
