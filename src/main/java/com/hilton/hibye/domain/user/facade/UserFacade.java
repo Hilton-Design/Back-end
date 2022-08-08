@@ -22,7 +22,6 @@ public class UserFacade {
     public void validateSignUp(CreateUserRequestDto request) {
         if (
                 userRepository.existsByEmail(request.getEmail()) ||
-                userRepository.existsByPhone(request.getPhone()) ||
                 userRepository.existsByName(request.getName())
         ) {
             throw UserAlreadyExistsException.EXCEPTION;
@@ -32,5 +31,15 @@ public class UserFacade {
     public User getCurrentUser() {
         return userRepository.findById(3L)
                 .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+    }
+
+    public boolean isSaved(User user) {
+        if (
+                userRepository.existsByEmail(user.getEmail()) ||
+                userRepository.existsByName(user.getName())
+        ) {
+            return true;
+        }
+        return false;
     }
 }

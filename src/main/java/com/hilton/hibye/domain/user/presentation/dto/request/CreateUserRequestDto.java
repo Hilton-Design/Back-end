@@ -11,19 +11,12 @@ public class CreateUserRequestDto {
 
     private String email;
     private String password;
-    private int age;
     private String name;
-    private String phone;
-    private String address;
 
     public User toEntity() {
         return User.builder()
                 .email(email)
-                .password(password)
-                .age(age)
                 .name(name)
-                .phone(phone)
-                .address(address)
                 .role(Role.USER)
                 .build();
     }

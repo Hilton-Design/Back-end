@@ -4,8 +4,10 @@ import com.hilton.hibye.domain.user.domain.OAuthToken;
 import com.hilton.hibye.domain.user.facade.UserFacade;
 import com.hilton.hibye.domain.user.presentation.dto.request.CreateUserRequestDto;
 import com.hilton.hibye.domain.user.service.UserService;
+import com.hilton.hibye.global.security.oauth.KakaoProfile;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -29,7 +31,7 @@ public class UserController {
     }
 
     @GetMapping("/auth/kakao/callback")
-    public String kakaoCallback(@RequestParam String code) {
+    public Authentication kakaoCallback(@RequestParam String code) {
         return userService.kakaoLogin(code);
     }
 }

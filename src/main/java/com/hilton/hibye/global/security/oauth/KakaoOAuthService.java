@@ -72,7 +72,7 @@ public class KakaoOAuthService {
         return oAuthToken;
     }
 
-    public String getUserProfile(OAuthToken oAuthToken) {
+    public KakaoProfile getUserProfile(OAuthToken oAuthToken) {
         RestTemplate restTemplate = new RestTemplate();
 
         HttpHeaders headers = new HttpHeaders();
@@ -88,6 +88,16 @@ public class KakaoOAuthService {
                 String.class
         );
 
-        return response.getBody();
+        System.out.println(response);
+
+        ObjectMapper objectMapper = new ObjectMapper();
+        KakaoProfile kakaoProfile = null;
+        try {
+            kakaoProfile = objectMapper.readValue(response.getBody(), KakaoProfile.class);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+
+        return kakaoProfile;
     }
 }

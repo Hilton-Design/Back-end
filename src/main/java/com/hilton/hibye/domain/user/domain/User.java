@@ -7,9 +7,13 @@ import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 
 @Entity
@@ -25,13 +29,9 @@ public class User extends BaseTimeEntity {
 
     private String email;
 
-    private String password;
+    private String thumbnailImage;
 
-    private int age;
-
-    private String phone;
-
-    private String address;
+    private String profileImage;
 
     private int lateCount;
 
@@ -46,13 +46,11 @@ public class User extends BaseTimeEntity {
     private List<Commute> commutingList = new ArrayList<>();
 
     @Builder
-    public User (String name, String email, String password, int age, String phone, String address, Role role, int commuteCount, int hourlyWage) {
+    public User (String name, String email, String thumbnailImage, String profileImage, Role role, int commuteCount, int hourlyWage) {
         this.name = name;
         this.email = email;
-        this.password = password;
-        this.age = age;
-        this.phone = phone;
-        this.address = address;
+        this.thumbnailImage = thumbnailImage;
+        this.profileImage = profileImage;
         this.role = role;
         this.commuteCount = commuteCount;
         this.hourlyWage = hourlyWage;
