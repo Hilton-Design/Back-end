@@ -3,7 +3,7 @@ package com.hilton.hibye.domain.commute.facade;
 import com.hilton.hibye.domain.commute.domain.Commute;
 import com.hilton.hibye.domain.commute.domain.repository.CommuteRepository;
 import com.hilton.hibye.domain.commute.exception.*;
-import com.hilton.hibye.domain.commute.presentation.dto.response.CommuteResponseDto;
+import com.hilton.hibye.domain.user.domain.User;
 import com.hilton.hibye.domain.user.domain.repository.UserRepository;
 import com.hilton.hibye.domain.user.exception.UserNotFoundException;
 import com.hilton.hibye.global.Utils.DateUtil;
@@ -13,9 +13,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-import java.util.stream.Collectors;
-
 @Component
 @RequiredArgsConstructor
 @Slf4j
@@ -24,25 +21,25 @@ public class CommuteFacade {
     private final CommuteRepository commuteRepository;
     private final UserRepository userRepository;
 
-    public Commute findCommuteByNameAndToday(String name) {
-        return commuteRepository.findByNameAndGoToWorkTimeBetween(name, DateUtil.getToday(), DateUtil.getTomorrow())
+    public Commute findCommuteByUserAndToday(User user) {
+        return commuteRepository.findByUserAndGoToWorkTimeBetween(user, DateUtil.getToday(), DateUtil.getTomorrow())
                 .orElseThrow(() -> NobodyCommuteException.EXCEPTION);
     }
 
-    public void validateGoToWork(String name) {
-        if (commuteRepository.existsByNameAndGoToWorkTimeBetween(name, DateUtil.getToday(), DateUtil.getTomorrow())) {
+    public void validateGoToWork(User user) {
+        if (commuteRepository.existsByUserAndGoToWorkTimeBetween(user, DateUtil.getToday(), DateUtil.getTomorrow())) {
             throw AlreadyGoToWorkException.EXCEPTION;
         }
     }
 
-    public void validateGetOffWork(String name) {
-        if (!userRepository.existsByName(name)) {
+    public void validateGetOffWork(User user) {
+        if (!userRepository.existsById(user.getId())) {
             throw UserNotFoundException.EXCEPTION;
         }
-        if (!commuteRepository.existsByNameAndGoToWorkTimeBetween(name, DateUtil.getToday(), DateUtil.getTomorrow())) {
+        if (!commuteRepository.existsByUserAndGoToWorkTimeBetween(user, DateUtil.getToday(), DateUtil.getTomorrow())) {
             throw GoToWorkYetException.EXCEPTION;
         }
-        if (commuteRepository.existsByNameAndGetOffWorkTimeBetween(name, DateUtil.getToday(), DateUtil.getTomorrow())) {
+        if (commuteRepository.existsByUserAndGetOffWorkTimeBetween(user, DateUtil.getToday(), DateUtil.getTomorrow())) {
             throw AlreadyGetOffWorkException.EXCEPTION;
         }
     }

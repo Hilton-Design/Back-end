@@ -20,15 +20,6 @@ public class Commute {
     @Column(name = "id", nullable = false)
     private Long id;
 
-    @Column(name = "name", nullable = false)
-    private String name;
-
-    @Column(name = "email", nullable = false)
-    private String email;
-
-    @Column(name = "late_count", nullable = false)
-    private int lateCount;
-
     @Column(name = "get_to_work_time", nullable = false)
     private LocalDateTime goToWorkTime;
 
@@ -40,10 +31,7 @@ public class Commute {
     private User user;
 
     @Builder
-    public Commute(String name, String email, int lateCount, User user, LocalDateTime goToWorkTime, LocalDateTime getOffWorkTime) {
-        this.name = name;
-        this.email = email;
-        this.lateCount = lateCount;
+    public Commute(User user, LocalDateTime goToWorkTime, LocalDateTime getOffWorkTime) {
         this.user = user;
         this.goToWorkTime = goToWorkTime;
         this.getOffWorkTime = getOffWorkTime;
@@ -51,10 +39,7 @@ public class Commute {
 
     public static Commute createCommute(User user) {
         return Commute.builder()
-                .email(user.getEmail())
-                .name(user.getName())
                 .user(user)
-                .lateCount(user.getLateCount())
                 .goToWorkTime(DateUtil.getCommuteTime())
                 .getOffWorkTime(null)
                 .build();
