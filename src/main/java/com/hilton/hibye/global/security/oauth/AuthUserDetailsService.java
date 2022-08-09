@@ -18,6 +18,6 @@ public class AuthUserDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         return userRepository.findByEmail(username)
                 .map(AuthUserDetails::new)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+                .orElseThrow(() -> new RuntimeException("loadUserByUsername 실패함 ㅅㅂ ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ"));
     }
 }

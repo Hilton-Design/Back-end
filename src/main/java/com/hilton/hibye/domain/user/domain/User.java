@@ -3,10 +3,7 @@ package com.hilton.hibye.domain.user.domain;
 import com.hilton.hibye.domain.commute.domain.Commute;
 import com.hilton.hibye.domain.user.domain.type.Role;
 import com.hilton.hibye.global.entity.BaseTimeEntity;
-import lombok.AccessLevel;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
@@ -20,6 +17,7 @@ import java.util.List;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "user_table")
 @Getter
+@ToString(of = {"id", "name", "email", "password", "thumbnailImage"})
 public class User extends BaseTimeEntity {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,13 +27,13 @@ public class User extends BaseTimeEntity {
 
     private String email;
 
+    private String password;
+
     private String thumbnailImage;
 
     private String profileImage;
 
     private int lateCount;
-
-    private int commuteCount;
 
     private int hourlyWage;
 
@@ -46,19 +44,17 @@ public class User extends BaseTimeEntity {
     private List<Commute> commutingList = new ArrayList<>();
 
     @Builder
-    public User (String name, String email, String thumbnailImage, String profileImage, Role role, int commuteCount, int hourlyWage) {
+    public User (String name, String email, String password, String thumbnailImage, String profileImage, Role role, int hourlyWage) {
         this.name = name;
         this.email = email;
+        this.password = password;
         this.thumbnailImage = thumbnailImage;
         this.profileImage = profileImage;
         this.role = role;
-        this.commuteCount = commuteCount;
         this.hourlyWage = hourlyWage;
     }
 
     public void late() {
         this.lateCount++;
     }
-
-    public void commute() { this.commuteCount++; }
 }

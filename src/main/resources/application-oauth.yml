@@ -9,3 +9,6 @@ token-request:
 
 profile-request:
   uri: https://kapi.kakao.com/v2/user/me
+
+cos:
+  cosKey: cos1234

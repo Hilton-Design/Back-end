@@ -5,7 +5,10 @@ import com.hilton.hibye.domain.user.domain.repository.UserRepository;
 import com.hilton.hibye.domain.user.exception.UserAlreadyExistsException;
 import com.hilton.hibye.domain.user.exception.UserNotFoundException;
 import com.hilton.hibye.domain.user.presentation.dto.request.CreateUserRequestDto;
+import com.hilton.hibye.global.security.oauth.AuthUserDetails;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -29,8 +32,8 @@ public class UserFacade {
     }
 
     public User getCurrentUser() {
-        return userRepository.findById(3L)
-                .orElseThrow(() -> UserNotFoundException.EXCEPTION);
+        AuthUserDetails authUserDetails= (AuthUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        return authUserDetails.getUser();
     }
 
     public boolean isSaved(User user) {

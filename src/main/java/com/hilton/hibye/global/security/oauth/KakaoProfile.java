@@ -4,17 +4,17 @@ package com.hilton.hibye.global.security.oauth;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.hilton.hibye.domain.user.domain.User;
 import com.hilton.hibye.domain.user.domain.type.Role;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.util.Date;
 
 @Getter
-@AllArgsConstructor
-@NoArgsConstructor
 @JsonIgnoreProperties(ignoreUnknown=true)
+@Slf4j
 public class KakaoProfile{
+
     private Long id;
     private Date connected_at;
     private KakaoAccount kakao_account;
@@ -34,15 +34,15 @@ public class KakaoProfile{
         }
     }
 
-    public User toEntity() {
+    public User toEntity(PasswordEncoder passwordEncoder, String password) {
         return User.builder()
                 .name(this.kakao_account.profile.nickname)
                 .email(this.kakao_account.email)
+                .password(passwordEncoder.encode(password))
                 .thumbnailImage(this.kakao_account.profile.thumbnail_image_url)
                 .profileImage(this.kakao_account.profile.profile_image_url)
                 .role(Role.USER)
                 .hourlyWage(0)
-                .commuteCount(0)
                 .hourlyWage(0)
                 .build();
     }
