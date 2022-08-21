@@ -23,7 +23,6 @@ public class CommuteResponseDto {
         return CommuteResponseDto.builder()
                 .date(DateUtil.localDateTimeToStringDate(commute.getGoToWorkTime()))
                 .name(commute.getUser().getName())
-                .thumbnailImage(commute.getUser().getThumbnailImage())
                 .goToWorkTime(DateUtil.localDateTimeToStringTime(commute.getGoToWorkTime()))
                 .getOffWorkTime(DateUtil.localDateTimeToStringTime(commute.getGetOffWorkTime()))
                 .build();

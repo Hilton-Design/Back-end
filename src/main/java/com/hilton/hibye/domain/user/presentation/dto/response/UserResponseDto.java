@@ -28,8 +28,6 @@ public class UserResponseDto {
                 .name(user.getName())
                 .email(user.getEmail())
                 .password(user.getPassword())
-                .thumbnailImage(user.getThumbnailImage())
-                .profileImage(user.getProfileImage())
                 .lateCount(user.getLateCount())
                 .commuteCount(user.getCommutingList().size())
                 .hourlyWage(user.getHourlyWage())
