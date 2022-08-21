@@ -34,14 +34,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement()
                 .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
-//                .and()
-//                .formLogin()
-//                .loginPage("/")
-//                .loginProcessingUrl("/auth/kakao/callback")
-//                .defaultSuccessUrl("/")
 
                 .and()
                 .authorizeRequests()
+                .antMatchers("*").permitAll()
                 .anyRequest().permitAll();
 
     }

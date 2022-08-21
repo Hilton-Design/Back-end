@@ -27,7 +27,7 @@ public class CommuteService {
     public void goToWork() {
         User user = userFacade.getCurrentUser();
 
-        commuteFacade.validateGoToWork(user);
+//        commuteFacade.validateGoToWork(user);
 
         // TODO :: findByName -> getCurrentUser
         Commute commute = Commute.createCommute(user);
@@ -40,7 +40,7 @@ public class CommuteService {
     public void getOffWork() {
         User user = userFacade.getCurrentUser();
 
-        commuteFacade.validateGetOffWork(user);
+//        commuteFacade.validateGetOffWork(user);
 
         // TODO :: findByName -> getCurrentUser
         Commute commute = commuteFacade.findCommuteByUserAndToday(user);
