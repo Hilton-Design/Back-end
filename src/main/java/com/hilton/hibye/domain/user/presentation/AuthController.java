@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 
 @RestController
+@CrossOrigin("*")
 @RequestMapping("/auth")
 @RequiredArgsConstructor
 public class AuthController {
@@ -25,5 +26,12 @@ public class AuthController {
     @DeleteMapping
     public void logoutUser() {
         authService.logoutUser();
+    }
+
+    @PutMapping
+    public TokenResponseDto getNewAccessToken(
+            @RequestHeader(value = "Refresh-Token") String refreshToken
+    ) {
+        return authService.getNewAccessToken(refreshToken);
     }
 }

@@ -38,4 +38,14 @@ public class AuthService {
         User user = userFacade.getCurrentUser();
         redisService.deleteData(user.getEmail());
     }
+
+    public TokenResponseDto getNewAccessToken(String refreshToken) {
+        jwtValidateService.validateRefreshToken(refreshToken);
+
+        return TokenResponseDto.builder()
+                .accessToken(jwtTokenProvider.createAccessToken(
+                        jwtValidateService.getEmail(refreshToken)
+                ))
+                .build();
+    }
 }
