@@ -25,5 +25,5 @@ spring:
 
 
   jwt:
-    secret: asdfasdfasdfasfasdfadsfadsfasdfsadfsdfasfsfasdfsafasdfasdfasfasfasdsafsdffadsfasdfasfasf
+    secret: aGVsbG9Xb3JsZElzTXlMaWZlQmVjdWFzZU15TGlmZVNPR29vZEJlY2F1c2VGdWNrWW91U2h1dFVw
 

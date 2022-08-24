@@ -1,4 +1,4 @@
-package com.hilton.hibye.global.redis;
+package com.hilton.hibye.global.config.redis;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;

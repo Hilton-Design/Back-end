@@ -1,4 +1,4 @@
-package com.hilton.hibye.global.redis;
+package com.hilton.hibye.global.config.redis;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.redis.core.StringRedisTemplate;

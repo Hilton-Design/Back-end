@@ -18,9 +18,8 @@ import java.util.Date;
 import static com.hilton.hibye.global.security.jwt.JwtProperties.JWT_HEADER;
 import static com.hilton.hibye.global.security.jwt.JwtProperties.JWT_PREFIX;
 
-
 @Component
-public class JwtTokenProvider {
+public class  JwtTokenProvider {
 
     @Value("${spring.jwt.secret}")
     private String SECRET_KEY;
@@ -51,7 +50,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public Claims extractAllClaims(String token) {
+    public Claims  extractAllClaims(String token) {
         try {
             return Jwts.parserBuilder()
                     .setSigningKey(getSigningKey(SECRET_KEY))

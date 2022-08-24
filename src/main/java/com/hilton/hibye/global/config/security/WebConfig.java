@@ -1,4 +1,4 @@
-package com.hilton.hibye.global.security;
+package com.hilton.hibye.global.config.security;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;

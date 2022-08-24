@@ -1,4 +1,4 @@
-package com.hilton.hibye.global.security;
+package com.hilton.hibye.global.config.security;
 
 import com.hilton.hibye.global.security.jwt.JwtTokenProvider;
 import com.hilton.hibye.global.security.jwt.JwtValidateService;
@@ -42,13 +42,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .formLogin().disable()
-                .cors().disable()
                 .httpBasic().disable()
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
 
                 .and()
                 .authorizeRequests()
-                .antMatchers("*").permitAll()
+                .antMatchers("/**").permitAll()
         ;
 
         http
